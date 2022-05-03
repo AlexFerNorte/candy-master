@@ -1,7 +1,6 @@
-using System;
 using CandyMaster.Project.Scripts.Common.Enums;
-using Plugins.TiqCore.Implementations.Instructions;
 using UnityEngine;
+using Screen = CandyMaster.Project.Scripts.UI.Core.Screen;
 
 namespace CandyMaster.Project.Scripts.Objects.Core.Entities
 {
@@ -9,10 +8,11 @@ namespace CandyMaster.Project.Scripts.Objects.Core.Entities
     {
         [field: SerializeField] private Transform CameraViewPoint { get; set; }
         [field: SerializeField] private float CameraSmoothTransitionTime { get; set; }
-        
+        [field: SerializeField] private Screen Screen { get; set; }
+
         public CompletionState CurrentState { get; set; }
-        
-        
+
+
         #region Initialization
         protected override void InitializeVariables(StageStepInitializeData initializeData)
         {
@@ -49,10 +49,8 @@ namespace CandyMaster.Project.Scripts.Objects.Core.Entities
             CurrentState = CompletionState.Performing;
         }
 
-        public void Complete()
+        public virtual void Complete()
         {
-            //завершить счет всякой хуйни
-            CurrentState = CompletionState.Completed;
             OnComplete();
         }
         #endregion
@@ -65,7 +63,7 @@ namespace CandyMaster.Project.Scripts.Objects.Core.Entities
             (
                 CameraViewPoint.position, 
                 CameraSmoothTransitionTime, 
-                InitializeData.StageEvents.OnStageStepPrepared.Invoke
+                () => InitializeData.StageEvents.OnStageStepPrepared.Invoke(Screen)
             );
             
             InitializeData.ActiveCamera.SmoothRotate
@@ -80,8 +78,9 @@ namespace CandyMaster.Project.Scripts.Objects.Core.Entities
             InitializeData.StageEvents.OnStageStepPerforming.Invoke();
         }
         
-        protected virtual void OnComplete()
+        private void OnComplete()
         {
+            CurrentState = CompletionState.Completed;
             InitializeData.StageEvents.OnStageStepCompleted.Invoke();
         }
         #endregion

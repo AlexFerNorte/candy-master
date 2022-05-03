@@ -1,5 +1,6 @@
 using System;
 using CandyMaster.Project.Scripts.Data.Immutable;
+using CandyMaster.Project.Scripts.Events;
 using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Camera;
 using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage;
 

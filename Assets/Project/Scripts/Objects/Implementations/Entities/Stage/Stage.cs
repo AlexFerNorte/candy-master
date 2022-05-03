@@ -22,7 +22,7 @@ namespace CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage
         #region Initialization
         protected override void InitializeVariables(StageInitializeData initializeData)
         {
-            InitializeData.StageEvents.OnStageStepPrepared.AddListener(PerformCurrentStageStep);
+            InitializeData.StageEvents.OnStageStepPrepared.AddListener((screen) => PerformCurrentStageStep());
             InitializeData.StageEvents.OnStageStepCompleted.AddListener(OnStageStepCompleted);
             
             foreach (var step in StageSteps)
