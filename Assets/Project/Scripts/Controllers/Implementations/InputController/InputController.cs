@@ -1,17 +1,12 @@
 using System;
-using CandyMasters.Project.Scripts.Controllers.Core;
-using UnityEngine;
+using CandyMaster.Project.Scripts.Controllers.Core;
 using UnityEngine.Events;
 
-namespace CandyMasters.Project.Scripts.Controllers.Implementations.InputController
+namespace CandyMaster.Project.Scripts.Controllers.Implementations.InputController
 {
     [Serializable]
     public class InputController : Controller<InputControllerInitializeData>
     {
-        [field: SerializeField] private float SwipeMinYScreenPercent { get; set; }
-        [field: SerializeField] private float SwipeDetectHoldTime { get; set; }
-        [field: SerializeField] private float SwipeCancelHoldTime { get; set; }
-        
         private bool _isDown;
         private int _tapCounter;
         private float _swipeHoldTimer;

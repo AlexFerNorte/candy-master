@@ -1,16 +1,17 @@
-using CandyMasters.Project.Scripts.Data;
-using CandyMasters.Project.Scripts.Events;
+using System;
+using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
+using CandyMaster.Project.Scripts.Events;
 
-namespace CandyMasters.Project.Scripts.Objects.Implementations.Entities.Stage
+namespace CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage
 {
     public class StageInitializeData : InitializeData
     {
-        public GameEvents GameEvents { get; }
+        public StageEvents StageEvents { get; }
 
-
-        public StageInitializeData(GameEvents gameEvents)
+        public StageInitializeData(StageEvents stageEvents)
         {
-            GameEvents = gameEvents;
+            StageEvents = stageEvents;
         }
     }
 }

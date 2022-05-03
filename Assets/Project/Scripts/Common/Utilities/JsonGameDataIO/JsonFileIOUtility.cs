@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Common.Utilities.JsonGameDataIO
+namespace CandyMaster.Project.Scripts.Common.Utilities.JsonGameDataIO
 {
     public static class JsonFileIOUtility
     {

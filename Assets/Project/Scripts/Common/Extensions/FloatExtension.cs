@@ -1,5 +1,5 @@
 
-namespace CandyMasters.Project.Scripts.Common.Extensions
+namespace CandyMaster.Project.Scripts.Common.Extensions
 {
     public static class FloatExtension
     {

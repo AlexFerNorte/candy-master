@@ -1,7 +1,8 @@
-﻿using CandyMasters.Project.Scripts.Data;
+﻿using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Objects.Core
+namespace CandyMaster.Project.Scripts.Objects.Core
 {
     public abstract class Entity<TInitializeData> : MonoBehaviour
         where TInitializeData : InitializeData
@@ -13,6 +14,9 @@ namespace CandyMasters.Project.Scripts.Objects.Core
         public virtual void Initialize(TInitializeData initializeData)
         {
             InitializeData = initializeData;
+            
+            InitializeVariables(initializeData);
+            InitializeInstructions(initializeData);
         }
 
         protected abstract void InitializeVariables(TInitializeData initializeData);

@@ -1,13 +1,14 @@
 ﻿using System;
-using CandyMasters.Project.Scripts.Controllers.Core;
-using CandyMasters.Project.Scripts.Objects.Core.Entities;
-using CandyMasters.Project.Scripts.Objects.Implementations.Entities.Stage;
-using CandyMasters.Project.Scripts.UI.Implementations.Screens.StageComplete;
-using CandyMasters.Project.Scripts.UI.Implementations.Screens.StageFailure;
+using CandyMaster.Project.Scripts.Controllers.Core;
+using CandyMaster.Project.Scripts.Objects.Core.Entities;
+using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage;
+using CandyMaster.Project.Scripts.UI.Implementations.Screens.StageComplete;
+using CandyMaster.Project.Scripts.UI.Implementations.Screens.StageFailure;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Controllers.Implementations.UIController
+namespace CandyMaster.Project.Scripts.Controllers.Implementations.UIController
 {
+    [Serializable]
     public class UIController : Controller<UIControllerInitializeData>
     {
         #region Serialized

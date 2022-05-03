@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CandyMasters.Project.Scripts.UI.Implementations.Buttons
+namespace CandyMaster.Project.Scripts.UI.Implementations.Buttons
 {
     public class UIToggleButton : Core.Button
     {

@@ -1,24 +1,25 @@
 ﻿using System;
-using CandyMasters.Project.Scripts.Data;
-using CandyMasters.Project.Scripts.Objects.Implementations.Entities.Stage;
+using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
+using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage;
+using CandyMaster.Project.Scripts.UI.Common;
 
-namespace CandyMasters.Project.Scripts.Controllers.Implementations.UIController
+namespace CandyMaster.Project.Scripts.Controllers.Implementations.UIController
 {
     public class UIControllerInitializeData : InitializeData
     {
-        public Stage Stage { get; }
-        public Action OnReplayClicked { get; }
-        public Action OnContinueClicked { get; }
+        public UIEvents UIEvents { get; }
+        public StageEvents StageEvents { get; }
 
 
         public UIControllerInitializeData
         (
-            Stage stage, Action onReplayClicked, Action onContinueClicked
+            UIEvents uiEvents,
+            StageEvents stageEvents
         )
         {
-            Stage = stage;
-            OnReplayClicked = onReplayClicked;
-            OnContinueClicked = onContinueClicked;
+            UIEvents = uiEvents;
+            StageEvents = stageEvents;
         }
     }
 }

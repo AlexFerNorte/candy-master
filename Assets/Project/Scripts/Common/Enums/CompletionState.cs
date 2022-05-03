@@ -1,7 +1,7 @@
-﻿namespace CandyMasters.Project.Scripts.Common.Enums
+﻿namespace CandyMaster.Project.Scripts.Common.Enums
 {
     public enum CompletionState
     {
-        Prepared, Performed, Completed
+        Preparing, Performing, Completed
     }
 }

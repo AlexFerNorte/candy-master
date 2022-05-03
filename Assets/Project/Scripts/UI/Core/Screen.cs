@@ -1,7 +1,8 @@
-﻿using CandyMasters.Project.Scripts.Data;
+﻿using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.UI.Core
+namespace CandyMaster.Project.Scripts.UI.Core
 {
     public abstract class Screen<TInitializeData> : MonoBehaviour
         where TInitializeData : InitializeData

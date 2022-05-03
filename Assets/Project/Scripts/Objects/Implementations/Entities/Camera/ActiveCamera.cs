@@ -1,7 +1,9 @@
-﻿using CandyMasters.Project.Scripts.Objects.Core;
+﻿using System;
+using CandyMaster.Project.Scripts.Objects.Core;
+using DG.Tweening;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Objects.Implementations.Entities.Camera
+namespace CandyMaster.Project.Scripts.Objects.Implementations.Entities.Camera
 {
     public class ActiveCamera : Entity<ActiveCameraInitializeData>
     {
@@ -44,14 +46,18 @@ namespace CandyMasters.Project.Scripts.Objects.Implementations.Entities.Camera
         #region Common
         public void Locate(Vector3 position) => transform.position = position;
         
-        public void Rotate(Quaternion rotation) => transform.rotation = rotation;
-        
-        public void Transformize(Vector3 position, Quaternion rotation)
+        public void SmoothLocate(Vector3 position, float time, Action onComplete = null)
         {
-            Locate(position);
-            Rotate(rotation);
+            transform.DOMove(position, time).OnComplete(() => onComplete?.Invoke());
         }
-        
+
+        public void SmoothRotate(Vector3 rotation, float time, Action onComplete = null)
+        {
+            transform.DORotate(rotation, time).OnComplete(() => onComplete?.Invoke());
+        }
+
+        public void Rotate(Quaternion rotation) => transform.rotation = rotation;
+
         public Vector3 GetScreenPosition(Vector3 worldPosition) => Camera.WorldToScreenPoint(worldPosition);
         #endregion
     }

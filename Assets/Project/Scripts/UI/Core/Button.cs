@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.UI.Core
+namespace CandyMaster.Project.Scripts.UI.Core
 {
     [RequireComponent(typeof(UnityEngine.UI.Button))]
     public abstract class Button : MonoBehaviour

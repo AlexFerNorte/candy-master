@@ -1,13 +1,12 @@
-﻿using CandyMasters.Project.Scripts.Common.Classes;
-using CandyMasters.Project.Scripts.Controllers.Implementations.GameController;
-using CandyMasters.Project.Scripts.Controllers.Implementations.InputController;
-using CandyMasters.Project.Scripts.Controllers.Implementations.InstancesController;
-using CandyMasters.Project.Scripts.Controllers.Implementations.StageController;
-using CandyMasters.Project.Scripts.Controllers.Implementations.StageStepController;
-using CandyMasters.Project.Scripts.Controllers.Implementations.UIController;
+﻿using CandyMaster.Project.Scripts.Controllers.Implementations.GameController;
+using CandyMaster.Project.Scripts.Controllers.Implementations.InputController;
+using CandyMaster.Project.Scripts.Controllers.Implementations.StageController;
+using CandyMaster.Project.Scripts.Controllers.Implementations.UIController;
+using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage;
+using CandyMaster.Project.Scripts.UI.Common;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Controllers.Common
+namespace CandyMaster.Project.Scripts.Controllers.Common
 {
     public class Bootstrapper : MonoBehaviour
     {
@@ -19,9 +18,7 @@ namespace CandyMasters.Project.Scripts.Controllers.Common
         [field: Header("Controllers")]
         [field: SerializeField] public GameController GameController { get; private set; }
         [field: SerializeField] public InputController InputController { get; private set; }
-        [field: SerializeField] public InstancesController InstancesController { get; private set; }
         [field: SerializeField] public StageController StageController { get; private set; }
-        [field: SerializeField] public StageStepController StageStepController { get; private set; }
         [field: SerializeField] public UIController UIController { get; private set; }
 
         [field: Header("Values")]
@@ -29,11 +26,11 @@ namespace CandyMasters.Project.Scripts.Controllers.Common
         [field: Header("Flags")]
         [field: SerializeField] public bool NoFlags { get; private set; }
         #endregion
-
+        
         #region Current
         
         #endregion
-
+        
         #region Special
 
         #endregion
@@ -64,17 +61,36 @@ namespace CandyMasters.Project.Scripts.Controllers.Common
 
         private void InitializeControllers()
         {
-            /*GameController.Initialize(new GameControllerInitializeData());
+            var stageEvents = new StageEvents();
+            var uiEvents = new UIEvents();
+            
             InputController.Initialize(new InputControllerInitializeData());
-            InstancesController.Initialize(new InstancesControllerInitializeData());
-            StageController.Initialize(new StageControllerInitializeData());
-            StageStepController.Initialize(new StageStepControllerInitializeData());
-            UIController.Initialize(new UIControllerInitializeData());*/
+            
+            StageController.Initialize(new StageControllerInitializeData
+            (
+                stageEvents,
+                uiEvents
+            ));
+            
+            UIController.Initialize(new UIControllerInitializeData
+            (
+                uiEvents,
+                stageEvents
+            ));
+            
+            GameController.Initialize(new GameControllerInitializeData
+            (
+                InputController,
+                StageController,
+                UIController,
+                stageEvents
+            ));
         }
 
         private void Perform()
         {
-            //GameController.PerformGame();
+            GameController.PrepareGame();
+            GameController.PerformGame();
         }
         #endregion
     }

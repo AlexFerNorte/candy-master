@@ -1,30 +1,29 @@
-﻿using CandyMasters.Project.Scripts.Data;
+﻿using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
+using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage;
 
-namespace CandyMasters.Project.Scripts.Controllers.Implementations.GameController
+namespace CandyMaster.Project.Scripts.Controllers.Implementations.GameController
 {
     public class GameControllerInitializeData : InitializeData
     {
         public InputController.InputController InputController { get; }
-        public InstancesController.InstancesController InstancesController { get; }
         public StageController.StageController StageController { get; }
-        public StageStepController.StageStepController StageStepController { get; }
         public UIController.UIController UIController { get; }
+        public StageEvents StageEvents { get; }
 
 
         public GameControllerInitializeData
         (
             InputController.InputController inputController,
-            InstancesController.InstancesController instancesController,
             StageController.StageController stageController,
-            StageStepController.StageStepController stageStepController,
-            UIController.UIController uiController
+            UIController.UIController uiController,
+            StageEvents stageEvents
         )
         {
             InputController = inputController;
-            InstancesController = instancesController;
             StageController = stageController;
-            StageStepController = stageStepController;
             UIController = uiController;
+            StageEvents = stageEvents;
         }
     }
 }

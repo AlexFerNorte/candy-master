@@ -1,4 +1,4 @@
-namespace CandyMasters.Project.Scripts.UI.Implementations.Tooltips
+namespace CandyMaster.Project.Scripts.UI.Implementations.Tooltips
 {
     public class filler
     {

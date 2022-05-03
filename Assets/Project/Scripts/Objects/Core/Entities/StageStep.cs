@@ -1,9 +1,15 @@
-using CandyMasters.Project.Scripts.Common.Enums;
+using System;
+using CandyMaster.Project.Scripts.Common.Enums;
+using Plugins.TiqCore.Implementations.Instructions;
+using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Objects.Core.Entities
+namespace CandyMaster.Project.Scripts.Objects.Core.Entities
 {
-    public class StageStep : Entity<StageStepInitializeData>
+    public abstract class StageStep : Entity<StageStepInitializeData>
     {
+        [field: SerializeField] private Transform CameraViewPoint { get; set; }
+        [field: SerializeField] private float CameraSmoothTransitionTime { get; set; }
+        
         public CompletionState CurrentState { get; set; }
         
         
@@ -33,17 +39,50 @@ namespace CandyMasters.Project.Scripts.Objects.Core.Entities
         #region Common
         public void Prepare()
         {
-            CurrentState = CompletionState.Prepared;
+            CurrentState = CompletionState.Preparing;
+            OnPrepare();
         }
 
         public void Perform()
         {
-            CurrentState = CompletionState.Performed;
+            OnPerform();
+            CurrentState = CompletionState.Performing;
         }
 
         public void Complete()
         {
+            //завершить счет всякой хуйни
             CurrentState = CompletionState.Completed;
+            OnComplete();
+        }
+        #endregion
+
+
+        #region Extends
+        protected virtual void OnPrepare()
+        {
+            InitializeData.ActiveCamera.SmoothLocate
+            (
+                CameraViewPoint.position, 
+                CameraSmoothTransitionTime, 
+                InitializeData.StageEvents.OnStageStepPrepared.Invoke
+            );
+            
+            InitializeData.ActiveCamera.SmoothRotate
+            (
+                CameraViewPoint.rotation.eulerAngles, 
+                CameraSmoothTransitionTime
+            );
+        }
+        
+        protected virtual void OnPerform()
+        {
+            InitializeData.StageEvents.OnStageStepPerforming.Invoke();
+        }
+        
+        protected virtual void OnComplete()
+        {
+            InitializeData.StageEvents.OnStageStepCompleted.Invoke();
         }
         #endregion
     }

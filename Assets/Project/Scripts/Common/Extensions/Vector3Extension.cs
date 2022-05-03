@@ -1,7 +1,7 @@
-using CandyMasters.Project.Scripts.Objects.Implementations.Entities.Camera;
+using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Camera;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Common.Extensions
+namespace CandyMaster.Project.Scripts.Common.Extensions
 {
     public static class Vector3Extension
     {

@@ -1,12 +1,13 @@
-﻿using CandyMasters.Project.Scripts.Data;
+﻿using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
 
-namespace CandyMasters.Project.Scripts.Controllers.Core
+namespace CandyMaster.Project.Scripts.Controllers.Core
 {
     public abstract class Controller<TInitializeData>
         where TInitializeData : InitializeData
     {
-        protected TInitializeData Data;
+        protected TInitializeData InitializeData;
 
-        public virtual void Initialize(TInitializeData data) => Data = data;
+        public virtual void Initialize(TInitializeData data) => InitializeData = data;
     }
 }

@@ -1,4 +1,4 @@
-namespace CandyMasters.Project.Scripts.UI.Implementations.Screens.StageFailure
+namespace CandyMaster.Project.Scripts.UI.Implementations.Screens.StageFailure
 {
     public class StageFailureScreenInitializeData
     {

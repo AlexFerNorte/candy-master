@@ -1,8 +1,10 @@
 using System;
-using CandyMasters.Project.Scripts.Controllers.Core;
+using CandyMaster.Project.Scripts.Controllers.Core;
+using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Controllers.Implementations.GameController
+namespace CandyMaster.Project.Scripts.Controllers.Implementations.GameController
 {
+    [Serializable]
     public class GameController : Controller<GameControllerInitializeData>
     {
         public override void Initialize(GameControllerInitializeData data)
@@ -10,6 +12,7 @@ namespace CandyMasters.Project.Scripts.Controllers.Implementations.GameControlle
             base.Initialize(data);
         }
 
+        
         #region Input
         public void OnFingerDown()
         {
@@ -46,76 +49,17 @@ namespace CandyMasters.Project.Scripts.Controllers.Implementations.GameControlle
 
 
         #region Launch
-        public void PrepareMenu()
-        {
-
-        }
-        
-        public void PerformMenu()
-        {
-
-        }
-        
         public void PrepareGame()
         {
-            Data.StageController.PrepareStage(Data.StageController.NextStageIndex);
-            Data.StageStepController.PrepareStageStep(Data.StageStepController.NextStageStepIndex);
+            InitializeData.StageController.PrepareStage(InitializeData.StageController.NextStageIndex);
         }
 
         public void PerformGame()
         {
-            Data.StageController.PerformCurrentStage();
-            Data.StageStepController.PerformCurrentStageStep();
+            InitializeData.StageController.PerformCurrentStage();
         }
         #endregion
 
-
-        #region GameEvents
-        private void OnMainMenuRecipeConfirmed()
-        {
-            
-        }
-        
-        private void OnMainMenuRecipeDeclined()
-        {
-            
-        }
-        
-        private void OnStagePrepare()
-        {
-            
-        }
-        
-        private void OnStagePerform()
-        {
-            
-        }
-        
-        private void OnStageComplete()
-        {
-            
-        }
-        
-        private void OnStageExit()
-        {
-            
-        }
-        
-        private void OnStageStepPrepare()
-        {
-            
-        }
-        
-        private void OnStageStepPerform()
-        {
-            
-        }
-        
-        private void OnStageStepComplete()
-        {
-            
-        }
-        #endregion
 
 
         #region Reset

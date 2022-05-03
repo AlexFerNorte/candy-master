@@ -1,4 +1,4 @@
-namespace CandyMasters.Project.Scripts.Common.Utilities.JsonGameDataIO
+namespace CandyMaster.Project.Scripts.Common.Utilities.JsonGameDataIO
 {
     public class GameJsonData
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace CandyMasters.Project.Scripts.Events
+namespace CandyMaster.Project.Scripts.Events
 {
     public class GameEvents
     {

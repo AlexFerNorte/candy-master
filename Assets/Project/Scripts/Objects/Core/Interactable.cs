@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Objects.Core
+namespace CandyMaster.Project.Scripts.Objects.Core
 {
     public abstract class Interactable : MonoBehaviour
     {

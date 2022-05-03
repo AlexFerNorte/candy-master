@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CandyMasters.Project.Scripts.Common.Classes
+namespace CandyMaster.Project.Scripts.Common.Classes
 {
     [Serializable]
     public struct Curve3

@@ -1,7 +1,7 @@
-using CandyMasters.Project.Scripts.Objects.Core;
+using CandyMaster.Project.Scripts.Objects.Core;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Objects.Implementations.Entities.Player
+namespace CandyMaster.Project.Scripts.Objects.Implementations.Entities.Player
 {
     public class Player : Entity<PlayerInitializeData>
     {

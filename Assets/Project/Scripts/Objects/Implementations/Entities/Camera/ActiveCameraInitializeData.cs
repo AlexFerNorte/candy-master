@@ -1,6 +1,7 @@
-﻿using CandyMasters.Project.Scripts.Data;
+﻿using CandyMaster.Project.Scripts.Data;
+using CandyMaster.Project.Scripts.Data.Immutable;
 
-namespace CandyMasters.Project.Scripts.Objects.Implementations.Entities.Camera
+namespace CandyMaster.Project.Scripts.Objects.Implementations.Entities.Camera
 {
     public class ActiveCameraInitializeData : InitializeData
     {

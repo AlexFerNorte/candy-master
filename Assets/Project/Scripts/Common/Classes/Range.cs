@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Common.Classes
+namespace CandyMaster.Project.Scripts.Common.Classes
 {
     [Serializable]
     public class Range

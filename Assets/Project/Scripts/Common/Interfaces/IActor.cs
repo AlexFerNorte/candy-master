@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CandyMasters.Project.Scripts.Common.Interfaces
+namespace CandyMaster.Project.Scripts.Common.Interfaces
 {
     public interface IActor
     {
