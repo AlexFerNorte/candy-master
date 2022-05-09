@@ -1,5 +1,6 @@
 ﻿using CandyMaster.Project.Scripts.Controllers.Implementations.GameController;
 using CandyMaster.Project.Scripts.Controllers.Implementations.InputController;
+using CandyMaster.Project.Scripts.Controllers.Implementations.LobbyController;
 using CandyMaster.Project.Scripts.Controllers.Implementations.StageController;
 using CandyMaster.Project.Scripts.Controllers.Implementations.UIController;
 using CandyMaster.Project.Scripts.Events;
@@ -12,20 +13,12 @@ namespace CandyMaster.Project.Scripts.Controllers.Common
     public class Bootstrapper : MonoBehaviour
     {
         #region Serialized
-        [field: Header("Common")]
-        [field: SerializeField] public Transform GameObjectsFolder { get; private set; }
-        [field: SerializeField] public Transform UIFolder { get; private set; }
-
         [field: Header("Controllers")]
-        [field: SerializeField] public GameController GameController { get; private set; }
         [field: SerializeField] public InputController InputController { get; private set; }
+        [field: SerializeField] public LobbyController LobbyController { get; private set; }
         [field: SerializeField] public StageController StageController { get; private set; }
         [field: SerializeField] public UIController UIController { get; private set; }
-
-        [field: Header("Values")]
-        [field: SerializeField] public float NoValues { get; private set; }
-        [field: Header("Flags")]
-        [field: SerializeField] public bool NoFlags { get; private set; }
+        [field: SerializeField] public GameController GameController { get; private set; }
         #endregion
         
         #region Current
@@ -67,6 +60,8 @@ namespace CandyMaster.Project.Scripts.Controllers.Common
             
             InputController.Initialize(new InputControllerInitializeData());
             
+            LobbyController.Initialize(new LobbyControllerInitializeData());
+            
             StageController.Initialize(new StageControllerInitializeData
             (
                 stageEvents,
@@ -84,7 +79,8 @@ namespace CandyMaster.Project.Scripts.Controllers.Common
                 InputController,
                 StageController,
                 UIController,
-                stageEvents
+                stageEvents,
+                uiEvents
             ));
         }
 

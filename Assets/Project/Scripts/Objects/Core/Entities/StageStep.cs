@@ -43,9 +43,9 @@ namespace CandyMaster.Project.Scripts.Objects.Core.Entities
             OnPrepare();
         }
 
-        public void Perform()
+        public void Promote()
         {
-            OnPerform();
+            OnPromoted();
             CurrentState = CompletionState.Performing;
         }
 
@@ -72,16 +72,21 @@ namespace CandyMaster.Project.Scripts.Objects.Core.Entities
                 CameraSmoothTransitionTime
             );
         }
-        
-        protected virtual void OnPerform()
+
+        protected virtual void OnPromoted()
         {
-            InitializeData.StageEvents.OnStageStepPerforming.Invoke();
+            InitializeData.StageEvents.OnStageStepPromoted.Invoke();
+        }
+        
+        protected virtual void OnPerforming(float percent)
+        {
+            InitializeData.StageEvents.OnStageStepPerforming.Invoke(percent);
         }
         
         private void OnComplete()
         {
             CurrentState = CompletionState.Completed;
-            InitializeData.StageEvents.OnStageStepCompleted.Invoke();
+            InitializeData.StageEvents.OnStageStepCompleted.Invoke(Screen);
         }
         #endregion
     }

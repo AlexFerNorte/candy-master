@@ -7,7 +7,6 @@ namespace CandyMaster.Project.Scripts.Events
         public readonly UnityEvent OnRecipeAccepted;
         public readonly UnityEvent OnRecipeDeclined;
         public readonly UnityEvent OnStageContinueClicked;
-        public readonly UnityEvent OnStageStepPerformed;
 
 
         public UIEvents()

@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using CandyMaster.Project.Scripts.Controllers.Core;
-using CandyMaster.Project.Scripts.Objects.Core.Entities;
-using CandyMaster.Project.Scripts.Objects.Implementations.Entities.Stage;
-using CandyMaster.Project.Scripts.UI.Implementations.Screens.StageComplete;
-using CandyMaster.Project.Scripts.UI.Implementations.Screens.StageFailure;
 using UnityEngine;
+using Screen = CandyMaster.Project.Scripts.UI.Core.Screen;
+
 
 namespace CandyMaster.Project.Scripts.Controllers.Implementations.UIController
 {
@@ -12,70 +11,61 @@ namespace CandyMaster.Project.Scripts.Controllers.Implementations.UIController
     public class UIController : Controller<UIControllerInitializeData>
     {
         #region Serialized
-        [field: SerializeField] private StageCompleteScreen StageCompleteScreen { get; set; }
-        [field: SerializeField] private StageFailureScreen StageFailureScreen { get; set; }
+        [SerializeField] private List<Screen> screens;
         #endregion
 
         #region Current
-        [field: SerializeField] private Stage CurrentStage { get; set; }
-        [field: SerializeField] private StageStep CurrentStageStep { get; set; }
+
         #endregion
 
+        
 
-        /*public override void Initialize(UIControllerInitializeData data)
+        #region Initialization
+        public override void Initialize(UIControllerInitializeData data)
         {
             base.Initialize(data);
-            var player = CommonObjects.PlayerInstance;
-            StageCompleteScreen.Initialize(new StageCompleteScreenInitializeData("", Data.OnContinueClicked));
-            StageFailureScreen.Initialize(new StageFailureScreenInitializeData("", Data.OnReplayClicked));
-            StaticTooltipManager.Initialize(Data.StageController);
+
+            foreach (var screen in screens)
+            {
+                screen.Initialize(InitializeData.StageEvents);
+            }
         }
+        #endregion
+
         
-        public void OnPlay()
-        {
-            CommonObjects.PlayerInstance.Variables.NpcCrowd.Events.OnCrowdStateChanged = SetCurrentCrowdState;
-            CrowdStateMonitor.Show();
-            SetCurrentCrowdState(CommonObjects.PlayerInstance.Variables.NpcCrowd.Variables.StickStructure.CurrentState);
-            StartRedrawMonitors();
-        }
-
-        public void OnStop()
-        {
-            CrowdStateMonitor.Hide();
-            StopRedrawMonitors();
-        }
-
-        public void ShowStageCompleteScreen() => StageCompleteScreen.Appear();
-
-        public void HideStageCompleteScreen() => StageCompleteScreen.Disappear();
-
-        public void ShowStageFailureScreen() => StageFailureScreen.Appear();
-
-        public void HideStageFailureScreen() => StageFailureScreen.Disappear();
-
-        public void ShowViewSelectionScreen() => ViewSelectionScreen.Appear();
-
-        public void ShowSettingsScreen() => SettingsScreen.Appear();
-
-        public void HideSettingsScreen() => SettingsScreen.Disappear();
         
-        public void ShowHoldToMoveTooltip() => StaticTooltipManager.ShowTooltip(StaticTooltipType.OnStagePlay);
+        #region Common
+        public void ActivateScreen(Screen screen)
+        {
+            IterateScreens(s =>
+            {
+                if (s == screen)
+                {
+                    s.Appear();
+                }
+                else
+                {
+                    s.Disappear();
+                }
+            });
+        }
+
+        public void DeactivateScreen(Screen screen)
+        {
+            screen.Disappear();
+        }
+        #endregion
         
-        public void SetCurrentCrowdState(NpcStickPointsState state) => CrowdStateMonitor.SetState(state);
-
-        public void StartRedrawMonitors()
+        
+        
+        #region Utilities
+        private void IterateScreens(Action<Screen> onIterate)
         {
-
+            foreach (var screen in screens)
+            {
+                onIterate?.Invoke(screen);
+            }
         }
-
-        public void StopRedrawMonitors()
-        {
-
-        }
-
-        public void Reset()
-        {
-
-        }*/
+        #endregion
     }
 }

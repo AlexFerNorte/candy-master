@@ -1,53 +1,35 @@
 using System;
 using CandyMaster.Project.Scripts.Controllers.Core;
-using UnityEngine;
+using Screen = CandyMaster.Project.Scripts.UI.Core.Screen;
 
 namespace CandyMaster.Project.Scripts.Controllers.Implementations.GameController
 {
+    /// <summary>
+    /// Main game controller. Manages other controllers and signals from one controller to another.
+    /// </summary>
     [Serializable]
     public class GameController : Controller<GameControllerInitializeData>
     {
+        #region Initialization
         public override void Initialize(GameControllerInitializeData data)
         {
             base.Initialize(data);
-        }
-
-        
-        #region Input
-        public void OnFingerDown()
-        {
-
-        }
-        
-        public void OnFingerHold(float xDelta)
-        {
-
-            //Variables.PlayerInstance.TryLocalMoveX(xDelta, out var newX);
-            //CommonObjects.ActiveCameraInstance.Move(newX);
-        }
-
-        public void OnFingerUp()
-        {
-
-        }
-
-        public void OnSwipe()
-        {
-            /*var state = NpcStickPointsState.First;
-            switch (Variables.PlayerInstance.Variables.NpcCrowd.Variables.StickStructure.CurrentState)
-            {
-                case NpcStickPointsState.First:
-                    state = NpcStickPointsState.Second;
-                    break;
-                case NpcStickPointsState.Second:
-                    state = NpcStickPointsState.First;
-                    break;
-            }
-            Variables.PlayerInstance.Variables.NpcCrowd.TryRegroup(state);*/
+            InitializeData.StageEvents.OnStagePrepared.AddListener(OnStagePrepared);
+            InitializeData.StageEvents.OnStagePromoted.AddListener(OnStageStarted);
+            InitializeData.StageEvents.OnStageCompleted.AddListener(OnStageCompleted);
+            InitializeData.StageEvents.OnStageStepPrepared.AddListener(OnStageStepPrepared);
+            InitializeData.StageEvents.OnStageStepPromoted.AddListener(OnStageStepStarted);
+            InitializeData.StageEvents.OnStageStepPerforming.AddListener(OnStageStepPerforming);
+            InitializeData.StageEvents.OnStageStepCompleted.AddListener(OnStageStepCompleted);
+            
+            InitializeData.UIEvents.OnRecipeAccepted.AddListener(OnRecipeAccepted);
+            InitializeData.UIEvents.OnRecipeDeclined.AddListener(OnRecipeDeclined);
+            InitializeData.UIEvents.OnStageContinueClicked.AddListener(OnStageContinueClicked);
         }
         #endregion
 
 
+        
         #region Launch
         public void PrepareGame()
         {
@@ -56,12 +38,82 @@ namespace CandyMaster.Project.Scripts.Controllers.Implementations.GameController
 
         public void PerformGame()
         {
-            InitializeData.StageController.PerformCurrentStage();
+            InitializeData.StageController.StartCurrentStage();
+        }
+        #endregion
+
+        
+        
+        #region InputEvents
+        public void OnFingerDown() { }
+        
+        public void OnFingerHold(float xDelta) { }
+
+        public void OnFingerUp() { }
+
+        public void OnSwipe() { }
+        #endregion
+        
+        
+
+        #region StageControllerEvents
+        private void OnStagePrepared()
+        {
+            
+        }
+
+        private void OnStageStarted()
+        {
+            
+        }
+
+        private void OnStageCompleted()
+        {
+            
+        }
+        
+        private void OnStageStepPrepared(Screen screen)
+        {
+            InitializeData.UIController.ActivateScreen(screen);
+        }
+
+        private void OnStageStepStarted()
+        {
+            
+        }
+
+        private void OnStageStepPerforming(float percent)
+        {
+
+        }
+
+        private void OnStageStepCompleted(Screen screen)
+        {
+            InitializeData.UIController.DeactivateScreen(screen);
         }
         #endregion
 
 
 
+        #region UIControllerEvents
+        private void OnRecipeAccepted()
+        {
+            
+        }
+        
+        private void OnRecipeDeclined()
+        {
+            
+        }
+        
+        private void OnStageContinueClicked()
+        {
+            
+        }
+        #endregion
+        
+        
+        
         #region Reset
         private void ResetControllers()
         {

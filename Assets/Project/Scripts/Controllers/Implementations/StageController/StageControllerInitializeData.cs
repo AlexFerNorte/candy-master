@@ -10,9 +10,13 @@ namespace CandyMaster.Project.Scripts.Controllers.Implementations.StageControlle
     public class StageControllerInitializeData : InitializeData
     {
         public StageEvents StageEvents { get; }
+        
         public UIEvents UIEvents { get; }
 
-        public StageControllerInitializeData(StageEvents stageEvents, UIEvents uiEvents)
+        public StageControllerInitializeData
+        (
+            StageEvents stageEvents, UIEvents uiEvents
+        )
         {
             StageEvents = stageEvents;
             UIEvents = uiEvents;

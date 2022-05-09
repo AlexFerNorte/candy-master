@@ -11,6 +11,7 @@ namespace CandyMaster.Project.Scripts.Controllers.Implementations.GameController
         public StageController.StageController StageController { get; }
         public UIController.UIController UIController { get; }
         public StageEvents StageEvents { get; }
+        public UIEvents UIEvents { get; }
 
 
         public GameControllerInitializeData
@@ -18,13 +19,15 @@ namespace CandyMaster.Project.Scripts.Controllers.Implementations.GameController
             InputController.InputController inputController,
             StageController.StageController stageController,
             UIController.UIController uiController,
-            StageEvents stageEvents
+            StageEvents stageEvents,
+            UIEvents uiEvents
         )
         {
             InputController = inputController;
             StageController = stageController;
             UIController = uiController;
             StageEvents = stageEvents;
+            UIEvents = uiEvents;
         }
     }
 }
